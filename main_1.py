@@ -71,8 +71,17 @@ class MyForm(QMainWindow):
       self.ui.lblSpouse.setText(signs[spouseIndex].capitalize() + ' (7)' )
       self.ui.lblSpouseWork.setText(signs[spouseWorkIndex].capitalize() + ' (12)' )
 
+      self.ui.lblSpouseCareer.setText(signs[spouseCareerIndex].capitalize() + ' (' + str((6+5+4)%12+1) + ')' )
+
+      self.ui.lblChild.setText(signs[kidIndex].capitalize() + ' (5)')
+      self.ui.lblChildWork.setText(signs[kidWorkIndex].capitalize() + ' (9)')
+
     def exitMethod(self):
         QApplication.instance().quit()
+
+    def makeSimpleNumber(self, index):
+      # index is the 
+      pass
 
 
 
