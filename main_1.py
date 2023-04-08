@@ -42,7 +42,7 @@ class MyForm(QMainWindow):
         # for this first project three empty methods are already created.
         # you are responsible for connecting the clicked signal from your widgets
         self.show()   # this line shows the .ui file after all the Widget's signals are connected.
-
+    
     def menuBackgroundMethod(self):
         intial_color = self.ui.menubar.palette().color(QPalette.Foreground)
         color = QColorDialog.getColor(intial_color, self, "Pick a color!")
@@ -61,29 +61,45 @@ class MyForm(QMainWindow):
       except:
         return
       
-      spouseIndex = (orig + 6) % 12
-      spouseWorkIndex = (orig + 6 + 5) % 12
+    
+      
+      spouseIndex = self.findSpouseIndex(orig)
+      spouseWorkIndex = self.findSpouseWorkIndex(orig)
       spouseCareerIndex = (orig + 6 + 5 + 4) % 12
-      kidIndex = (orig + 4) % 12
-      kidWorkIndex = (orig + 4 + 5) % 12
+      kidIndex = self.findKidIndex(orig)
+      kidWorkIndex = self.findKidWorkIndex(orig)
 
       self.ui.lblSubject.setText(s + ': (1)')
       self.ui.lblSpouse.setText(signs[spouseIndex].capitalize() + ' (7)' )
       self.ui.lblSpouseWork.setText(signs[spouseWorkIndex].capitalize() + ' (12)' )
 
-      self.ui.lblSpouseCareer.setText(signs[spouseCareerIndex].capitalize() + ' (' + str((6+5+4)%12+1) + ')' )
+      self.ui.lblSpouseCareer.setText(signs[spouseCareerIndex].capitalize() + ' (' + self.findSpouseCareerIndex(spouseCareerIndex) + ')' )
 
       self.ui.lblChild.setText(signs[kidIndex].capitalize() + ' (5)')
-      self.ui.lblChildWork.setText(signs[kidWorkIndex].capitalize() + ' (9)')
+      self.ui.lblChildWork.setText(signs[kidWorkIndex].capitalize() + ' (10)')
 
     def exitMethod(self):
         QApplication.instance().quit()
 
-    def makeSimpleNumber(self, index):
-      # index is the 
-      pass
-
-
+    def findSpouseIndex(self, i):
+        ndex = (i + 6) % 12
+        return ndex
+    
+    def findSpouseWorkIndex(self, i):
+        ndex = (i + 6 + 5) % 12
+        return ndex
+        
+    def findSpouseCareerIndex(self, i):
+        ndex = str((6+5+4)%12+1)
+        return ndex
+    
+    def findKidIndex(self, i):
+        ndex = (i + 4) % 12
+        return ndex
+    
+    def findKidWorkIndex(self, i):
+        ndex = (i + 4 + 5) % 12
+        return ndex
 
 # the code below should not be changed and is constant for all GUI programs
 if __name__=="__main__":    
